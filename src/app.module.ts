@@ -13,9 +13,28 @@ import { ApplicationsModule } from './applications/applications.module';
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        uri: configService.get<string>('mongodbUri') ?? '',
-      }),
+      useFactory: (configService: ConfigService) => {
+        const uri = configService.get<string>('mongodbUri') ?? '';
+        
+        if (!uri) {
+          throw new Error('MONGODB_URI environment variable is required');
+        }
+
+        return {
+          uri,
+          // Serverless-optimized Mongoose options
+          serverSelectionTimeoutMS: 5000,
+          socketTimeoutMS: 45000,
+          bufferCommands: false,
+          bufferMaxEntries: 0,
+          // Connection pool settings for serverless
+          maxPoolSize: 1,
+          minPoolSize: 0,
+          // Retry settings
+          retryWrites: true,
+          retryReads: true,
+        };
+      },
       inject: [ConfigService],
     }),
     JobsModule,
