@@ -22,11 +22,9 @@ import { ApplicationsModule } from './applications/applications.module';
 
         return {
           uri,
-          // Serverless-optimized Mongoose options
+          // Serverless-optimized MongoDB driver options
           serverSelectionTimeoutMS: 5000,
           socketTimeoutMS: 45000,
-          bufferCommands: false,
-          bufferMaxEntries: 0,
           // Connection pool settings for serverless
           maxPoolSize: 1,
           minPoolSize: 0,

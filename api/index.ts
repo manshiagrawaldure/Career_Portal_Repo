@@ -5,8 +5,10 @@ import { ValidationPipe } from '@nestjs/common';
 import express, { Express, Request, Response } from 'express';
 import mongoose from 'mongoose';
 
-// Set Mongoose strictQuery to false for compatibility
+// Configure Mongoose for serverless environment
 mongoose.set('strictQuery', false);
+// Disable command buffering for serverless (critical for Vercel)
+mongoose.set('bufferCommands', false);
 
 let cachedApp: Express | null = null;
 
