@@ -14,11 +14,11 @@ import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from '../common/multer.config';
 import { Multer } from 'multer';
 
-@Controller('applications')
+@Controller('application')
 export class ApplicationsController {
   constructor(private readonly service: ApplicationsService) {}
 
-  @Post()
+  @Post(':job_id')
   @UseInterceptors(
     FileFieldsInterceptor(
       [
@@ -29,6 +29,7 @@ export class ApplicationsController {
     ),
   )
   async create(
+    @Param('job_id') job_id: string,
     @Body() body: CreateApplicationDto,
     @UploadedFiles()
     files: {
@@ -45,6 +46,7 @@ export class ApplicationsController {
 
     return this.service.create({
       ...body,
+      job_id,
       resume_path: resume,
       cover_letter: cover, // optional
     });

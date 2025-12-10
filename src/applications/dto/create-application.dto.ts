@@ -2,9 +2,8 @@ import { IsNotEmpty, IsOptional, IsString, IsEmail, IsNumber } from 'class-valid
 import { Type } from 'class-transformer';
 
 export class CreateApplicationDto {
-  @IsNotEmpty()
-  @IsString()
-  job_id: string;
+  @IsOptional()
+  job_id?: string; // Set from URL params, not validated from body
 
   @IsNotEmpty()
   @IsString()
