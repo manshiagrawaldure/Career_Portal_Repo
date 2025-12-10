@@ -1,0 +1,52 @@
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
+@Schema({ timestamps: true })
+export class Application extends Document {
+  @Prop({ required: true })
+  job_id: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop({ required: true })
+  email: string;
+
+  @Prop({ required: true })
+  phone: string;
+
+  @Prop()
+  date_of_birth: string;
+
+  @Prop()
+  gender: string;
+
+  @Prop()
+  location: string;
+
+  @Prop()
+  highest_qualification: string;
+
+  @Prop()
+  total_experience: number;
+
+  @Prop()
+  current_company?: string; // optional
+
+  @Prop()
+  current_salary: number;
+
+  @Prop()
+  expected_salary: number;
+
+  @Prop()
+  notice_period: string;
+
+  @Prop()
+  cover_letter?: string; // optional file
+
+  @Prop()
+  resume_path: string;
+}
+
+export const ApplicationSchema = SchemaFactory.createForClass(Application);
