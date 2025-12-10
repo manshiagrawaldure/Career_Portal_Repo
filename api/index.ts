@@ -2,11 +2,11 @@ import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { AppModule } from '../src/app.module';
 import { ValidationPipe } from '@nestjs/common';
-import * as express from 'express';
+import express, { Express, Request, Response } from 'express';
 
-let cachedApp: express.Express;
+let cachedApp: Express;
 
-async function createApp(): Promise<express.Express> {
+async function createApp(): Promise<Express> {
   if (cachedApp) {
     return cachedApp;
   }
@@ -34,7 +34,7 @@ async function createApp(): Promise<express.Express> {
   return expressApp;
 }
 
-export default async function handler(req: express.Request, res: express.Response) {
+export default async function handler(req: Request, res: Response) {
   const app = await createApp();
   return app(req, res);
 }
