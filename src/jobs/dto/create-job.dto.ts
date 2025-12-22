@@ -7,6 +7,10 @@ export class CreateJobDto {
 
   @IsString()
   @IsNotEmpty()
+  companyName: string;
+
+  @IsString()
+  @IsNotEmpty()
   jobType: string;
 
   @IsString()

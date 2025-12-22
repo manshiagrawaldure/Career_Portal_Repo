@@ -14,11 +14,15 @@ import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from '../common/multer.config';
 import { Multer } from 'multer';
 
-@Controller('application')
+// Routes:
+// POST /application/:job_id
+// GET  /applications
+// GET  /application/:id
+@Controller()
 export class ApplicationsController {
   constructor(private readonly service: ApplicationsService) {}
 
-  @Post(':job_id')
+  @Post('application/:job_id')
   @UseInterceptors(
     FileFieldsInterceptor(
       [
@@ -52,12 +56,12 @@ export class ApplicationsController {
     });
   }
 
-  @Get()
+  @Get('applications')
   async findAll() {
     return this.service.findAll();
   }
 
-  @Get(':id')
+  @Get('application/:id')
   async findById(@Param('id') id: string) {
     return this.service.findById(id);
   }

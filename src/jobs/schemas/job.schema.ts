@@ -7,6 +7,9 @@ export class Job extends Document {
   jobRole: string;
 
   @Prop({ required: true })
+  companyName: string;
+
+  @Prop({ required: true })
   jobType: string;
 
   @Prop({ required: true })
