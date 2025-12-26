@@ -1,59 +1,55 @@
-import { IsNotEmpty, IsOptional, IsString, IsEmail, IsNumber } from 'class-validator';
+import { IsOptional, IsString, IsEmail, IsNumber } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreateApplicationDto {
   @IsOptional()
   job_id?: string; // Set from URL params, not validated from body
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
-  name: string;
+  name?: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsEmail()
-  email: string;
+  email?: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
-  phone: string;
+  phone?: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
-  date_of_birth: string;
+  gender?: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
-  gender: string;
+  location?: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
-  location: string;
+  highest_qualification?: string;
 
-  @IsNotEmpty()
-  @IsString()
-  highest_qualification: string;
-
-  @IsNotEmpty()
+  @IsOptional()
   @Type(() => Number)
   @IsNumber()
-  total_experience: number;
+  total_experience?: number;
 
   @IsOptional()
   current_company?: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @Type(() => Number)
   @IsNumber()
-  current_salary: number;
+  current_salary?: number;
 
-  @IsNotEmpty()
+  @IsOptional()
   @Type(() => Number)
   @IsNumber()
-  expected_salary: number;
+  expected_salary?: number;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
-  notice_period: string;
+  notice_period?: string;
 
   @IsOptional()
   cover_letter?: string; // file path stored

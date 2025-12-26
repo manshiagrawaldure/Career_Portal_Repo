@@ -3,50 +3,50 @@ import { Document } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class Application extends Document {
-  @Prop({ required: true })
-  job_id: string;
-
-  @Prop({ required: true })
-  name: string;
-
-  @Prop({ required: true })
-  email: string;
-
-  @Prop({ required: true })
-  phone: string;
+  @Prop()
+  job_id?: string;
 
   @Prop()
-  date_of_birth: string;
+  name?: string;
 
   @Prop()
-  gender: string;
+  email?: string;
 
   @Prop()
-  location: string;
+  phone?: string;
+
+  @Prop({ select: false })
+  date_of_birth?: string;
 
   @Prop()
-  highest_qualification: string;
+  gender?: string;
 
   @Prop()
-  total_experience: number;
+  location?: string;
+
+  @Prop()
+  highest_qualification?: string;
+
+  @Prop()
+  total_experience?: number;
 
   @Prop()
   current_company?: string; // optional
 
   @Prop()
-  current_salary: number;
+  current_salary?: number;
 
   @Prop()
-  expected_salary: number;
+  expected_salary?: number;
 
   @Prop()
-  notice_period: string;
+  notice_period?: string;
 
   @Prop()
   cover_letter?: string; // optional file
 
   @Prop()
-  resume_path: string;
+  resume_path?: string;
 }
 
 export const ApplicationSchema = SchemaFactory.createForClass(Application);

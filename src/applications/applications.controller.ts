@@ -41,18 +41,14 @@ export class ApplicationsController {
       cover_letter?: Multer.File[];
     },
   ) {
-    if (!files?.resume || files.resume.length === 0) {
-      throw new BadRequestException('Resume file is required');
-    }
-
-    const resume = files.resume[0].filename;
+    const resume = files?.resume?.[0]?.filename;
     const cover = files?.cover_letter?.[0]?.filename;
 
     return this.service.create({
       ...body,
       job_id,
-      resume_path: resume,
-      cover_letter: cover, // optional
+      ...(resume ? { resume_path: resume } : {}),
+      ...(cover ? { cover_letter: cover } : {}),
     });
   }
 
