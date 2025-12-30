@@ -6,11 +6,11 @@ export class Application extends Document {
   @Prop()
   job_id?: string;
 
-  @Prop()
-  name?: string;
+  @Prop({ required: true })
+  name: string;
 
-  @Prop()
-  email?: string;
+  @Prop({ required: true })
+  email: string;
 
   @Prop()
   phone?: string;

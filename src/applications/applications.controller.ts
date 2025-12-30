@@ -6,7 +6,6 @@ import {
   Post,
   UploadedFiles,
   UseInterceptors,
-  BadRequestException,
 } from '@nestjs/common';
 import { ApplicationsService } from './applications.service';
 import { CreateApplicationDto } from './dto/create-application.dto';
@@ -16,7 +15,7 @@ import { Multer } from 'multer';
 
 // Routes:
 // POST /application/:job_id
-// GET  /applications
+// GET  /applications/:job_id
 // GET  /application/:id
 @Controller()
 export class ApplicationsController {
@@ -52,9 +51,9 @@ export class ApplicationsController {
     });
   }
 
-  @Get('applications')
-  async findAll() {
-    return this.service.findAll();
+  @Get('applications/:job_id')
+  async findAll(@Param('job_id') jobId: string) {
+    return this.service.findAllWithFilter(jobId);
   }
 
   @Get('application/:id')

@@ -14,6 +14,10 @@ export class ApplicationsService {
     return this.repo.findAll();
   }
 
+  async findAllWithFilter(jobId?: string) {
+    return this.repo.findAll(jobId);
+  }
+
   async findById(id: string) {
     const app = await this.repo.findById(id);
 

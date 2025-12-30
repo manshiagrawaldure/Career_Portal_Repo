@@ -16,8 +16,9 @@ export class ApplicationsRepository {
     return app.save();
   }
 
-  async findAll(): Promise<Application[]> {
-    return this.appModel.find().exec();
+  async findAll(jobId?: string): Promise<Application[]> {
+    const filter = jobId ? { job_id: jobId } : {};
+    return this.appModel.find(filter).exec();
   }
 
   async findById(id: string): Promise<Application | null> {

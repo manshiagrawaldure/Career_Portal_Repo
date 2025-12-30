@@ -1,17 +1,17 @@
-import { IsOptional, IsString, IsEmail, IsNumber } from 'class-validator';
+import { IsOptional, IsString, IsEmail, IsNumber, IsNotEmpty } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreateApplicationDto {
   @IsOptional()
   job_id?: string; // Set from URL params, not validated from body
 
-  @IsOptional()
-  @IsString()
-  name?: string;
+  @IsNotEmpty({ message: 'name is required' })
+  @IsString({ message: 'name must be a string' })
+  name: string;
 
-  @IsOptional()
-  @IsEmail()
-  email?: string;
+  @IsNotEmpty({ message: 'email is required' })
+  @IsEmail({}, { message: 'email must be valid' })
+  email: string;
 
   @IsOptional()
   @IsString()
